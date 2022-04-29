@@ -2,9 +2,9 @@ import Joi from 'joi';
 import j2s from 'joi-to-swagger';
 
 const id = Joi.number().integer();
-const firstName = Joi.string().min(3).max(15).example('John');
-const lastName = Joi.string().min(3).max(15).example('Doe');
-const birthday = Joi.date().example('1998-10-10');
+const firstName = Joi.string().trim().min(3).max(15).regex(/^[a-zA-Z]*$/).example('John');
+const lastName = Joi.string().trim().min(3).max(15).regex(/^[a-zA-Z]*$/).example('Doe');
+const birthday = Joi.date().min('1930-01-01').max(Date.now()).example('1998-10-10');
 const limit = Joi.number().min(1);
 const offset = Joi.number().min(1);
 
