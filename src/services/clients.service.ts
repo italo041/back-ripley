@@ -24,15 +24,18 @@ const create = async (payload: ClientInterface) => {
 
 const findAll = async (params: any) => {
   try {
-    const { limit, offset } = params;
+    const { limit = 100, offset = 1 } = params;
     
-    const clients = await clientRepository.find({
+    const [clients, total] = await clientRepository.findAndCount({
       order: { createdAt: 'DESC' },
-      take: (limit && offset) & limit,
-      skip: (limit && offset) & (offset - 1) * limit,
+      take: limit,
+      skip: (offset - 1) * limit,
     });
 
-    return clients;
+    return {
+      data: clients,
+      count: total
+  };
   } catch (error: any) {
     throw boom.internal(error.message);
   }
