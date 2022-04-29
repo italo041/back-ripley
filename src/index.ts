@@ -1,18 +1,19 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
-
+import 'reflect-metadata';
 import { server } from './config';
+import app from './app';
+import { AppDataSource } from './database/db';
 
-dotenv.config();
+async function main() {
+  try {
+    AppDataSource.initialize();
+    app.listen(server.PORT, () => {
+      console.log(
+        `⚡️[server]: Server is running at https://localhost:${server.PORT}`,
+      );
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-const app: Express = express();
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
-
-app.listen(server.PORT, () => {
-  console.log(
-    `⚡️[server]: Server is running at https://localhost:${server.PORT}`,
-  );
-});
+main();
