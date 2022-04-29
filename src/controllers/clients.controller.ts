@@ -43,3 +43,16 @@ export const getAverageAges = async (
     next(error);
   }
 };
+
+export const getAgeRanges = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    let data = await client.agesRange();
+    return res.status(200).send(data);
+  } catch (error) {
+    next(error);
+  }
+};
