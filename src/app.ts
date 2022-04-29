@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./../src/config/swagger'); 
+const swaggerDocument = require('./config/swagger'); 
 
 import config from './config';
 

@@ -34,13 +34,13 @@ const findAll = (params) => __awaiter(void 0, void 0, void 0, function* () {
         const { limit, offset } = params;
         const clients = yield clientRepository.find({
             order: { createdAt: 'DESC' },
-            take: limit,
-            skip: (offset - 1) * limit,
+            take: (limit && offset) & limit,
+            skip: (limit && offset) & (offset - 1) * limit,
         });
         return clients;
     }
     catch (error) {
-        throw boom_1.default.internal();
+        throw boom_1.default.internal(error.message);
     }
 });
 const averageAges = () => __awaiter(void 0, void 0, void 0, function* () {

@@ -22,6 +22,6 @@ const getClientDto = joi_1.default.object({
 const filterClientDto = joi_1.default.object({
     limit: limit.optional(),
     offset: offset.optional(),
-});
+}).and('limit', 'offset');
 const CreateClientSchema = (0, joi_to_swagger_1.default)(createClientDto).swagger;
 module.exports = { createClientDto, filterClientDto, getClientDto, CreateClientSchema };

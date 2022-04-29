@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./../src/config/swagger');
+const swaggerDocument = require('./config/swagger');
 const config_1 = __importDefault(require("./config"));
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)(config_1.default.server.LOGGER));

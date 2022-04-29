@@ -6,11 +6,11 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const config = {
     server: {
-        PORT: process.env.PORT || 3000,
+        PORT: process.env.PORT || 4000,
         LOGGER: process.env.NODE_ENV === 'production' ? 'combined' : 'dev',
-        SWAGGER: `localhost:${process.env.PORT}` || 'localhost:3000',
-        SWAGGER_FULL: `http://localhost:${process.env.PORT}`,
-        SWAGGER_SCHEME: ['http'],
+        SWAGGER: process.env.SWAGGER || 'localhost:4000',
+        SWAGGER_FULL: process.env.SWAGGER_FULL,
+        SWAGGER_SCHEME: [`${process.env.SWAGGER_SCHEME}`],
     },
     database: {
         HOST: process.env.DB_HOST,

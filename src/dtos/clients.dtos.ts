@@ -21,7 +21,7 @@ const getClientDto = Joi.object({
 const filterClientDto = Joi.object({
   limit: limit.optional(),
   offset: offset.optional(),
-});
+}).and('limit', 'offset');
 
 const CreateClientSchema = j2s(createClientDto).swagger
 

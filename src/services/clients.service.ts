@@ -25,15 +25,16 @@ const create = async (payload: ClientInterface) => {
 const findAll = async (params: any) => {
   try {
     const { limit, offset } = params;
-
+    
     const clients = await clientRepository.find({
       order: { createdAt: 'DESC' },
-      take: limit,
-      skip: (offset - 1) * limit,
+      take: (limit && offset) & limit,
+      skip: (limit && offset) & (offset - 1) * limit,
     });
+
     return clients;
-  } catch (error) {
-    throw boom.internal();
+  } catch (error: any) {
+    throw boom.internal(error.message);
   }
 };
 
