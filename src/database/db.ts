@@ -5,11 +5,11 @@ import { Client } from './entities/client.entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: config.database.host,
-  username: config.database.username,
-  password: config.database.password,
-  port: config.database.port,
-  database: config.database.database,
+  host: config.database.HOST,
+  username: config.database.USERNAME,
+  password: config.database.PASSWORD,
+  port: config.database.PORT,
+  database: config.database.DATABASE,
   entities: [Client],
   logging: false,
   synchronize: true,

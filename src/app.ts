@@ -1,10 +1,14 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./../src/config/swagger');
+
+import config from './config';
 
 const app: Express = express();
 
-app.use(morgan('dev'));
+app.use(morgan(config.server.LOGGER));
 app.use(cors());
 app.use(express.json());
 
@@ -21,6 +25,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/api', router);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(logErrors);
 app.use(boomErrorHandler);

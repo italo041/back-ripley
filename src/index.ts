@@ -8,7 +8,7 @@ async function main() {
     AppDataSource.initialize();
     app.listen(server.PORT, () => {
       console.log(
-        `⚡️[server]: Server is running at https://localhost:${server.PORT}`,
+        `⚡️[server]: Server is running at http://localhost:${server.PORT}`,
       );
     });
   } catch (error) {
