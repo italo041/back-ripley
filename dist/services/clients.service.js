@@ -31,13 +31,16 @@ const create = (payload) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const findAll = (params) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { limit, offset } = params;
-        const clients = yield clientRepository.find({
+        const { limit = 100, offset = 1 } = params;
+        const [clients, total] = yield clientRepository.findAndCount({
             order: { createdAt: 'DESC' },
-            take: (limit && offset) & limit,
-            skip: (limit && offset) & (offset - 1) * limit,
+            take: limit,
+            skip: (offset - 1) * limit,
         });
-        return clients;
+        return {
+            data: clients,
+            count: total
+        };
     }
     catch (error) {
         throw boom_1.default.internal(error.message);
